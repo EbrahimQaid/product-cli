@@ -1,0 +1,19 @@
+{
+  "name": "CLITOOL",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {},
+  "bin": {
+    "CLITOOL": "index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^15.0.0",
+    "inquirer": "^14.0.2"
+  },
+  "devDependencies": {}
+}
