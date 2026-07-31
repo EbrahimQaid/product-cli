@@ -5,7 +5,7 @@ import { Command } from "commander";
 import inquirer from "inquirer";
 
 const program = new Command();
-const FILE_PATH = "product.json";
+const file_Path = "product.json";
 
 const questions = [
   {
@@ -30,8 +30,8 @@ program
   .description("Add a new product")
   .action(() => {
     inquirer.prompt(questions).then((answers) => {
-      if (fs.existsSync(FILE_PATH)) {
-        fs.readFile(FILE_PATH, "utf8", (err, data) => {
+      if (fs.existsSync()) {
+        fs.readFile(file_Path, "utf8", (err, data) => {
           if (err) {
             console.log(err);
             return;
@@ -40,34 +40,24 @@ program
           const products = JSON.parse(data);
           products.push(answers);
 
-          fs.writeFile(
-            FILE_PATH,
-            JSON.stringify(products),
-            "utf8",
-            (err) => {
-              if (err) {
-                console.log(err);
-                return;
-              }
-
-              console.log("Product added success.");
-            },
-          );
-        });
-      } else {
-        fs.writeFile(
-          FILE_PATH,
-          JSON.stringify([answers]),
-          "utf8",
-          (err) => {
+          fs.writeFile(file_Path, JSON.stringify(products), "utf8", (err) => {
             if (err) {
               console.log(err);
               return;
             }
 
-            console.log(" Product added success.");
-          },
-        );
+            console.log("Product added success.");
+          });
+        });
+      } else {
+        fs.writeFile(file_Path, JSON.stringify([answers]), "utf8", (err) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+
+          console.log(" Product added success.");
+        });
       }
     });
   });
@@ -81,12 +71,12 @@ program
   .alias("l")
   .description("Display all products")
   .action(() => {
-    if (!fs.existsSync(FILE_PATH)) {
+    if (!fs.existsSync(file_Path)) {
       console.log("No products found.");
       return;
     }
 
-    fs.readFile(FILE_PATH, "utf8", (err, data) => {
+    fs.readFile(file_Path, "utf8", (err, data) => {
       if (err) {
         console.log(err);
         return;

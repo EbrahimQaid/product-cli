@@ -19,5 +19,5 @@ npm link
 
 ## Usage
 
-views add
-views list
+CLITOOL add
+CLITOOL list
